@@ -7,10 +7,10 @@ Subject: [PATCH] remove x86-specific compiler flags
  wscript |    2 --
  1 files changed, 0 insertions(+), 2 deletions(-)
 
-diff --git a/o3/wscript b/o3/wscript
+diff --git a/../o3/wscript b/../o3/wscript
 index 6e21bee..607e1c3 100644
---- a/o3/wscript
-+++ b/o3/wscript
+--- a/../o3/wscript
++++ b/../o3/wscript
 @@ -9,8 +9,6 @@ def configure(conf):
    conf.check_tool('compiler_cxx')
    conf.check_tool('node_addon')   
