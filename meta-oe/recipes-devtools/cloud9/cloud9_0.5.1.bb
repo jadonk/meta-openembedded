@@ -68,13 +68,19 @@ S = "${WORKDIR}/git"
 
 do_configure () {
  cd ${WORKDIR}/o3
- node-waf configure
+ node-waf -vv configure
 }
+
+EXTRA_CXXFLAGS = "-Idefault/include -I../include -Idefault/hosts -I../hosts -Idefault/modules -I../modules -Idefault/deps -I../deps -I${STAGING_DIR_NATIVE}/usr/include/node -fPIC -DPIC"
 
 do_compile () {
  cd ${WORKDIR}/o3
  node tools/gluegen.js
- node-waf
+ cd hosts
+ ${CXX} ${TARGET_CXXFLAGS} ${EXTRA_CXXFLAGS} -c -o sh_node.o node-o3/sh_node.cc
+ ${CXX} ${TARGET_CXXFLAGS} ${EXTRA_CXXFLAGS} -c -o sh_node_libs.o node-o3/sh_node_libs.cc
+ cd ..
+ ${CXX} ${TARGET_LDFLAGS} hosts/sh_node.o hosts/sh_node_libs.o -o o3.node -shared -Wl,-Bdynamic -lxml2
 }
 
 do_install () {
@@ -88,12 +94,13 @@ do_install () {
 
  install -m 0755 -d ${D}/usr/share/cloud9/support/jsdav/support/node-o3-xml/lib
  install -m 0644 ${WORKDIR}/o3/modules/o3.js ${D}/usr/share/cloud9/support/jsdav/support/node-o3-xml/lib/o3-xml.js
- install -m 0755 ${WORKDIR}/o3/build/default/o3.node ${D}/usr/share/cloud9/support/jsdav/support/node-o3-xml/lib/o3.node
+ install -m 0755 ${WORKDIR}/o3/o3.node ${D}/usr/share/cloud9/support/jsdav/support/node-o3-xml/lib/o3.node
 
  install -m 0755 -d ${D}${base_libdir}/systemd/system
  install -m 0644 ${WORKDIR}/*.service ${D}${base_libdir}/systemd/system/
 }
 
+FILES_${PN}-dbg += "/usr/share/cloud9/support/jsdav/support/node-o3-xml/lib/node-o3-xml/.debug"
 
 FILES_${PN} += "${base_libdir}/systemd/system"
 RDEPENDS_${PN} = "nodejs gzip"
