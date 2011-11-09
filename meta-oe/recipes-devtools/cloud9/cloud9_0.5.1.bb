@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=4784c3bcff601fd8f9515f52a11e7018"
 
 DEPENDS = "libxml2 nodejs-native"
 
-PR = "r10"
+PR = "r11"
 
 SRC_URI = "git://github.com/ajaxorg/cloud9.git;name=cloud9ide \
            git://github.com/ajaxorg/o3;destsuffix=o3;name=o3 \
@@ -30,7 +30,7 @@ SRC_URI = "git://github.com/ajaxorg/cloud9.git;name=cloud9ide \
            git://github.com/ajaxorg/node-sftp.git;destsuffix=git/support/jsdav/support/node-sftp;name=sftp \
            git://github.com/ajaxorg/lib-v8debug.git;destsuffix=git/support/lib-v8debug;name=lib-v8debug \
            git://github.com/ajaxorg/socket.io.git;destsuffix=git/support/socket.io;name=socketio \
-           git://github.com/ajaxorg/socket.io-client.git;destsuffix=git/support/socket.io-client;name=socketio-client \
+           git://github.com/LearnBoost/socket.io-client.git;destsuffix=git/support/socket.io-client;name=socketio-client \
            git://github.com/ajaxorg/UglifyJS.git;destsuffix=git/support/uglify-js;name=uglify-js \
            file://cloud9.service \
            file://cloud9-avahi.service \
@@ -59,7 +59,7 @@ SRCREV_streamer = "1a7f75d4065819171ac91a09974199b932dbe17d"
 SRCREV_sftp = "a0539345134970d7535a19cb2608e3d1bc119d71"
 SRCREV_lib-v8debug = "29b20d01e6854da2173e1665ea141dab6b5a8104"
 SRCREV_socketio = "735d5239b325df2ba67d2b9bb4ec32442283bc06"
-SRCREV_socketio-client = "7b5335d1ed88564928a5d00d8a750ff9f9c627a5"
+SRCREV_socketio-client = "d12e0714e96490dfff770dc1d184e672549c6477"
 SRCREV_uglify-js = "941c845c4a01e4e47a158458fe846eb36d0828ad"
 
 SRCREV_FORMAT = "cloud9ide"
